@@ -1,0 +1,20 @@
+import re
+
+def solution(files):
+    heads = []
+    nums = []
+    answer = []
+
+    for file in files:          #NUMBER로 정렬
+        num = re.findall(f'\d+', file)
+        nums.append((int(num[0]), file))
+    nums = sorted(nums, key=lambda x : x[0])
+    _, srtd_files = zip(*nums)   #*연산자 써서 분해하기
+    
+    for srtd_file in srtd_files:  #HEAD로 정렬
+        head = re.split(f'\d+', srtd_file)[0]
+        heads.append((head, srtd_file))
+    heads = sorted(heads, key=lambda x : x[0].lower())
+    _, answer = zip(*heads)
+
+    return list(answer)
