@@ -1,0 +1,42 @@
+def solution(m, musicinfos):
+    answer = ''
+    substi = {'C':'H', 'D':'I',  'F':'J',  'G':'K',  'A':'L', 'E':'M'}
+    m_changed = ''
+    infos = []
+    #음악이 시작한 시각, 끝난 시각, 음악 제목, 악보 정보
+    for musicinfo in musicinfos:
+        sound = []
+        start_time, end_time, title, song = musicinfo.split(',')
+        start_hour, start_min = map(int, start_time.split(':'))
+        end_hour, end_min = map(int, end_time.split(':'))
+        time = (end_hour - start_hour) * 60 + end_min - start_min
+        for i in range(len(song)):
+            if song[i]=='#':
+                continue
+            if i < len(song)-1 and song[i+1]=='#':
+                sound.append(substi[song[i]])
+            else:
+                sound.append(song[i])
+        heard = sound * (time//len(sound)) + sound[:time%len(sound)]
+        infos.append((title, ''.join(heard)))
+
+    #플레이된 시간으로 sort 하기
+    infos = sorted(infos, key=lambda x: len(x[1]), reverse=True)
+
+    for j in range(len(m)):
+        if m[j]=='#':
+                continue
+        if j < len(m)-1 and m[j+1]=='#':
+            m_changed += substi[m[j]]
+        else:
+            m_changed += m[j]
+
+    for info in infos:
+        if m_changed in info[1]:
+            answer = info[0]
+            break
+    
+    if answer=='':
+        answer="(None)"
+
+    return answer 
