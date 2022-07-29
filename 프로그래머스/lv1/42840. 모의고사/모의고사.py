@@ -8,10 +8,8 @@ def solution(answers):
     for i in range(len(answers)):
         if answers[i] == p1[i%5]:
             c1 += 1
-    for i in range(len(answers)):
         if answers[i] == p2[i%8]:
             c2 += 1
-    for i in range(len(answers)):
         if answers[i] == p3[i%10]:
             c3 += 1        
             
