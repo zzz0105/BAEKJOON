@@ -1,0 +1,5 @@
+n, m = map(int,input().split())
+nl = set(input() for _ in range(n))
+ns = set(input() for _ in range(m))
+nls = sorted(list(nl & ns))
+print(len(nls), *nls, sep='\n')
