@@ -1,0 +1,15 @@
+def choose(ans):
+    if len(ans) == m:
+        print(*ans)
+        return 
+    else:
+        j = 0 if len(ans) == 0 else nums.index(ans[-1])
+        for i in range(j, len(nums)):
+            if nums[i] not in ans:
+                ans.append(nums[i])
+                choose(ans)
+                ans.pop()
+
+n, m = map(int, input().split())
+nums = range(1, n+1)
+choose([])
