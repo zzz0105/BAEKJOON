@@ -14,7 +14,7 @@ def isPalin(n):
 
 N = int(input())
 while True:
-    if isPrime(N) and isPalin(N):
+    if isPalin(N) and isPrime(N):
         print(N)
         break
     N += 1
