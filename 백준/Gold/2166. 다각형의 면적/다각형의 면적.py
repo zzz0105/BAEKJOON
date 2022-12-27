@@ -1,3 +1,5 @@
+# 신발끈 공식 사용
+
 N = int(input())
 points = [tuple(map(int,input().split())) for _ in range(N)]
 points.append((points[0]))
