@@ -1,12 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(void) {
   char word[100];
-  int len = 0;
   scanf("%s", word);
-  for (int i=0;word[i]!='\0';i++) {
-    len++;
-  }
+  int len = strlen(word);
   printf("%d", len);
   return 0;
 }
