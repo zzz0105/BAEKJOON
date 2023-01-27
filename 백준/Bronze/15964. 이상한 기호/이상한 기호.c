@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-long long At(int A, int B) {
+long long At(long long A, long long B) {
   return (A+B)*(A-B);
 }
 
 int main(void) {
-  int A, B;
-  scanf("%d %d", &A, &B);
+  long long A, B;
+  scanf("%lld %lld", &A, &B);
   printf("%lld", At(A, B));
   return 0;
 }
