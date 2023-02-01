@@ -2,8 +2,8 @@
 
 int main(void) {
   int A, B;
-  // EOF: 입력이 없을 때 파일을 종료하기 위해 사용됨
-  while (scanf("%d %d", &A, &B)!=EOF) {  
+  // scanf 함수는 입력의 개수를 반환한다
+  while (scanf("%d %d", &A, &B)==2) {  
     printf("%d\n", A+B);
   }
   return 0;
