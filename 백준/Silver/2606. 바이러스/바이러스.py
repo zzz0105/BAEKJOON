@@ -1,21 +1,25 @@
-from collections import deque
+def find(c):        # 부모 찾기
+    if parent[c]==c:
+        return c
+    return find(parent[c])
 
-n = int(input())
-c = int(input())
-connected = {}
-visited = [0] * (n+1)
-for _ in range(c):
-    com1, com2 = map(int, input().split())
-    connected[com1] = connected.get(com1, []) + [com2]
-    connected[com2] = connected.get(com2, []) + [com1]
+def union(c1,c2):   # 집합 합치기
+    c1 = find(c1)
+    c2 = find(c2)
+    if c1!=c2:
+        parent[max(c1,c2)] = min(c1,c2)
 
-coms = deque()
-coms.append(1)
-while coms:
-    com = coms.popleft()
-    visited[com] = 1
-    for co in connected[com]:
-        if visited[co]==0:
-            coms.append(co)
+N = int(input())    # 컴퓨터 수
+M = int(input())    # 컴퓨터 쌍의 수
 
-print(visited.count(1)-1)
+parent = [i for i in range(N+1)]
+
+for i in range(M):
+    c1, c2 = map(int,input().split())
+    union(c1,c2)
+
+answer = 0
+for i in range(2,N+1):
+    if find(i) == parent[1]:
+        answer += 1
+print(answer)
