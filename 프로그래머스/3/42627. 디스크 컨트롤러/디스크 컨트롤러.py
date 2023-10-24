@@ -1,20 +1,15 @@
 import heapq
 
-def solution(jobs):    
+def solution(jobs):
     hq = []
-    now, idx, answer, start = 0, 0, 0, -1
+    req_end = []
+    now = 0
+    for request, duration in jobs:
+        heapq.heappush(hq, [duration,request])
 
-    while idx < len(jobs):
-        for req, time in jobs:
-            if start < req <= now:
-                heapq.heappush(hq, (time, req))
-        if hq:
-            time, req = heapq.heappop(hq)
-            start = now
-            now += time
-            answer += now - req
-            idx += 1
-        else:
-            now += 1
-    
-    return answer//len(jobs)
+    while hq:
+        duration, request = heapq.heappop(hq)
+        req_end.append(max(0, now-request) + duration)
+        now = duration + max(now,request)
+
+    return sum(req_end)//len(jobs)
